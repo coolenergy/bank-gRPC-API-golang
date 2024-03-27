@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/api/annotations.proto";
+import "rpc_create_user.proto";
+import "rpc_login_user.proto";
+import "rpc_renew_access_token.proto";
+import "rpc_update_user.proto";
+import "rpc_create_account.proto";
+import "rpc_get_account.proto";
+import "rpc_list_accounts.proto";
+import "rpc_transfers.proto";
+import "rpc_verify_email.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+
+option go_package = "github.com/GiorgiMakharadze/bank-API-golang/pb";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Bank";
+    version: "1.2";
+    contact: {
+      name: "GiorgiMakharadze";
+      url: "https://github.com/GiorgiMakharadze/bank-API-golang";
+      email: "makharadzegiorgi00@gmail.com.com";
+    };
+  };
+};
+
+service Bank {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/create_user"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          description: "Use this API to create a new user";
+          summary: "Create new user";
+      };
+    }
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/login_user"
+            body: "*"
+        }; 
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          description: "Use this API to login user";
+          summary: "Log in user";
+      };
+    }
+    rpc RenewAccessToken (RenewAccessTokenRequest) returns (RenewAccessTokenResponse) {
+      option (google.api.http) = {
+          post: "/v1/renew_access"
+          body: "*"
+      }; 
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "Use this to renew access token";
+        summary: "Renew Access token";
+    };
+  }
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {
+      option (google.api.http) = {
+          patch: "/v1/update_user"
+          body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "Use this API to update user";
+        summary: "Update user";
+    };
+  }
+  rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {
+    option (google.api.http) = {
+        post: "/v1/create_account"
+        body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to create account";
+      summary: "Create new account";
+   };
+ }
+ rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+  option (google.api.http) = {
+      get: "/v1/get_account/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to get an account by ID";
+      summary: "Get account by ID";
+  };
+}
+ rpc ListAccounts (ListAccountRequest) returns (ListAccountResponse) {
+  option (google.api.http) = {
+    get: "/v1/list_accounts"
+  };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to list accounts";
+      summary: "List accounts";
+    };
+  }
+  rpc CreateTransfer (CreateTransferRequest) returns (CreateTransferResponse) {
+    option (google.api.http) = {
+        post: "/v1/transfers"
+        body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to transfer money";
+      summary: "Transfer money";
+   };
+ }
+ rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse) {
+  option (google.api.http) = {
+      get: "/v1/verify_email"
+ }; 
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    description: "Use this API to verify users's email address";
+    summary: "Verify Email";
+};
+}
+}
+
+
+

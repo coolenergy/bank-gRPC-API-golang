@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/GiorgiMakharadze/bank-API-golang/pb";
+
+message CreateTransferRequest {
+  int64 from_account_id = 1;
+  int64 to_account_id = 2;
+  int64 amount = 3;
+  string currency = 4;
+}
+
+message CreateTransferResponse {
+  int64 id = 1;
+  int64 from_account_id = 2;
+  int64 to_account_id = 3;
+  int64 amount = 4;
+  string created_at = 5;
+}

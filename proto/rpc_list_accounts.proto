@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+import "account.proto";
+
+option go_package = "github.com/GiorgiMakharadze/bank-API-golang/pb";
+
+message ListAccountRequest {
+    int32 PageID = 1;
+    int32 PageSize = 2;
+}
+
+message ListAccountResponse {
+    repeated Account account = 1;
+}

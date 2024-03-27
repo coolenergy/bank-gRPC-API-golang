@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+import "account.proto";
+
+option go_package = "github.com/GiorgiMakharadze/bank-API-golang/pb";
+
+message CreateAccountRequest {
+    string owner = 1;
+    string currency = 2;
+    int64 balance = 3;
+}
+
+message CreateAccountResponse {
+    Account account = 1;
+}
